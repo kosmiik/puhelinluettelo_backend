@@ -115,7 +115,7 @@ let persons = [
         })   
     })
 
-    app.put('/api/persons', (req, res, next) => {
+    app.put('/api/persons/:id', (req, res, next) => {
       const body = req.body
       const person = {
         name: body.name,
@@ -123,7 +123,7 @@ let persons = [
       }
       Person.findByIdAndUpdate(req.params.id, person, { new: true })
       .then(updatedPerson => {
-        res.json(updatedPerson.toJSON)
+        res.json(updatedPerson)
       })
       .catch(error => next(error))
   })
