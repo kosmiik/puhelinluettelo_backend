@@ -19,8 +19,13 @@ name: {
 },
 number: {
   type: String,
-  required: true
-}
+  minlength: 8,
+  required: true,
+  validate: {
+    validator: function(v) {
+      return /\d{2,3}-\d{4,10}/.test(v);
+    },
+}}
 })
 
 personSchema.set('toJSON', {
